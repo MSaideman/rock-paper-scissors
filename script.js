@@ -4,56 +4,69 @@ var message1 = "The result is a tie!"
 var message2 = "paper wins"
 var message3 = "scissors wins"
 var message4 = "rock wins"
+var options = ["rock", "paper", "scissors"];
 
-function playGame() {
-    var userChoice = prompt("Do you choose rock, paper or scissors?");
-    var computerChoice = Math.random();
+var playGame = function() {
+    var userChoice = window.prompt("Do you choose rock, paper or scissors?");
 
-    if (computerChoice < 0.34) {
-        computerChoice = "rock";
-    } else if (computerChoice <= 0.67) {
-        computerChoice = "paper";
-    } else {
-        computerChoice = "scissors";
+    if (!userChoice) {
+        return;
     }
+    var index = Math.floor(Math.random() * options.length);
+    var computerChoice = options[index];
+  
+    window.alert("The computer chose " + computerChoice);
+
     if (userChoice === computerChoice) {
         tieCtr++
-        return message1;
+        window.alert(message1);
     }
     if (userChoice === "rock") {
         if (computerChoice === "scissors") {
             playerWinCtr++
-            return message4;
+            window.alert(message4);
         } else {
             compWinCtr++
-            return message2;
+            window.alert(message2);
         }
     }
     if (userChoice === "paper") {
         if (computerChoice === "rock") {
             playerWinCtr++
-            return message2;
+            window.alert(message2);
         } else {
             if (computerChoice === "scissors") {
                 compWinCtr++
-                return message4;
+                window.alert(message4);
             }
         }
         if (userChoice === "scissors") {
             if (computerChoice === "rock") {
                 playerWinCtr++
-                return message4;
+                window.alert(message4);
             } else {
                 if (computerChoice === "paper") {
                     compWinCtr++
-                    return message3;
+                    window.alert(message4);
                 }
             }
         }
     }
     console.log("User Choice: " + userChoice);
     console.log("Computer Choice: " + computerChoice);
-    console.log(compare(userChoice, computerChoice));
+
+    window.alert(
+        "Stats:\nWins: " + playerWinCtr + "\nLosses: " + compWinCtr + "\nTies: " + tieCtr
+      );
+    
+      // Ask user to play again
+      var playAgain = window.confirm("Do you want to play again?");
+    
+      // If user pressed OK, run the function again
+      if (playAgain) {
+        playGame();
+      }
+    
 }
 
 alert(playGame());
