@@ -4,65 +4,59 @@ var message1 = "The result is a tie!"
 var message2 = "paper wins"
 var message3 = "scissors wins"
 var message4 = "rock wins"
-var playAgain = "Y"
 
-var userChoice = prompt("Do you choose rock, paper or scissors?");
+function playGame() {
+    var userChoice = prompt("Do you choose rock, paper or scissors?");
+    var computerChoice = Math.random();
 
-var computerChoice = Math.random();
-if (computerChoice < 0.34) {
-    computerChoice = "rock";
-} else if (computerChoice <= 0.67) {
-    computerChoice = "paper";
-} else {
-    computerChoice = "scissors";
-}
-var compare = function (userChoice, computerChoice) {
+    if (computerChoice < 0.34) {
+        computerChoice = "rock";
+    } else if (computerChoice <= 0.67) {
+        computerChoice = "paper";
+    } else {
+        computerChoice = "scissors";
+    }
     if (userChoice === computerChoice) {
         tieCtr++
-        window.alert(message1)
-        return message1 + " " + tieCtr;
+        return message1;
     }
     if (userChoice === "rock") {
         if (computerChoice === "scissors") {
             playerWinCtr++
-            window.alert(message4)
-            return message4 + " " + playerWinCtr;
+            return message4;
         } else {
             compWinCtr++
-            window.alert(message2)
-            return message2 + " " + compWinCtr;
+            return message2;
         }
     }
     if (userChoice === "paper") {
         if (computerChoice === "rock") {
             playerWinCtr++
-            window.alert(message2)
-            return message2 + " " + playerWinCtr;
+            return message2;
         } else {
             if (computerChoice === "scissors") {
                 compWinCtr++
-                window.alert(message4)
-                return message4 + " " + compWinCtr;
+                return message4;
             }
         }
         if (userChoice === "scissors") {
             if (computerChoice === "rock") {
                 playerWinCtr++
-                window.alert(message4)
-                return message4 + " " + playerWinCtr;
+                return message4;
             } else {
                 if (computerChoice === "paper") {
                     compWinCtr++
-                    window.alert(message3)
-                    return message3 + " " + compWinCtr;
+                    return message3;
                 }
             }
         }
     }
-};
-console.log("User Choice: " + userChoice);
-console.log("Computer Choice: " + computerChoice);
-console.log(compare(userChoice, computerChoice));
+    console.log("User Choice: " + userChoice);
+    console.log("Computer Choice: " + computerChoice);
+    console.log(compare(userChoice, computerChoice));
+}
 
-playagain = prompt("Do you want to play again? Y or N")
-userChoice = prompt("Do you choose rock, paper or scissors?");
+alert(playGame());
+while (prompt("Do you want to play again, Y or N?") == "Y") {
+    alert(playGame());
+}
